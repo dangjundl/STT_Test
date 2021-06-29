@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView android:id="@+id/sttResult"
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/sttResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="음성인식 결과가 여기에 표시됩니다." />
+
+        <Button
+            android:id="@+id/sttStart"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/sttResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="음성인식 시작" />
+
+    <Button
+        android:id="@+id/tts_Intent"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/sttStart"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="음성인식 결과가 여기에 표시됩니다." />
+        android:text="tts_Intent"/>
 
-    <Button android:id="@+id/sttStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="음성인식 시작" />
+</RelativeLayout>
 
-</LinearLayout>
