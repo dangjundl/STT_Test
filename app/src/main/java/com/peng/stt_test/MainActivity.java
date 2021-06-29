@@ -9,12 +9,17 @@ import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
+import static android.speech.tts.TextToSpeech.ERROR;
 
 public class MainActivity extends AppCompatActivity {
     final int PERMISSION = 1;
@@ -22,12 +27,17 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     Button sttBtn;
     Button ttsBtn;
+    Button readtext;
     SpeechRecognizer mRecognizer;
+    private TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
 
 
   //구글 STT 예제
@@ -39,8 +49,28 @@ public class MainActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.sttResult);
         sttBtn = (Button) findViewById(R.id.sttStart);
         ttsBtn = (Button) findViewById(R.id.tts_Intent);
+        readtext = (Button) findViewById(R.id.read_text);
+
         //RecognizerIntent 객체 생성
 
+        readtext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!tts.isSpeaking()) {
+                    tts.speak(textView.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
+                }
+            }
+        });
+
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != ERROR) {
+                    // 언어를 선택한다.
+                    tts.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
 
         ttsBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -78,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
 
         mRecognizer.setRecognitionListener(new RecognitionListener(){
 
@@ -147,8 +176,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
 
+
+    }
 
 }
 

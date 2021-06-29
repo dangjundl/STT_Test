@@ -25,9 +25,20 @@
             android:text="음성인식 시작" />
 
     <Button
+        android:id="@+id/read_text"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sttStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="읽어주세요" />
+
+
+    <Button
         android:id="@+id/tts_Intent"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/sttStart"
+        android:layout_below="@+id/read_text"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
